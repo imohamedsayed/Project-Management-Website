@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs')%>
+  <body>
+    <div class="page-view">
+      <%- include('./partials/aside.ejs')%>
+
+      <main class="home-page">
+        <div class="stats">
+          <div class="search">
+            <input type="search" placeholder="i'm searching for ...." />
+            <button class="btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <hr />
+          <div class="dash mt-5">
+            <h2>Dashboard</h2>
+            <p class="text-muted">See your overall performance</p>
+            <%- include('./partials/home/project_satas.ejs')%>
+          </div>
+          <div class="p-t mt-5">
+            <div class="row">
+              <div class="col-md-6 col-12 mb-2">
+                <%- include('./partials/home/performance.ejs')%>
+              </div>
+              <div class="col-md-6 col-12 mb-2">
+                <%- include('./partials/home/mytasks.ejs')%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info">
+          <div
+            class="actions d-md-flex d-block justify-content-between align-content-center"
+          >
+            <div class="notification mb-md-0 mb-2">
+              <i class="fa-regular fa-bell"></i>
+            </div>
+            <div class="btns text-center">
+              <button class="custom-btn me-2 mb-md-0 mb-2">
+                Add a Project
+              </button>
+              <button class="custom-btn2">Schedule a Shot</button>
+            </div>
+          </div>
+          <%- include('./partials/home/calender.ejs')%> <%-
+          include('./partials/home/todaySchedule.ejs')%>
+        </div>
+      </main>
+    </div>
+    <script src="./js/home.js"></script>
+  </body>
+</html>

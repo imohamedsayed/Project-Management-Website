@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/landingHeader.ejs')%>
+    <div class="auth">
+      <div class="intro">
+        <form action="" method="post" class="login-form auth-from">
+          <label for="email">Email : </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control mb-4"
+          />
+          <label for="password">Password : </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control mb-4"
+          />
+          <div class="text-center">
+            <button class="btn btn-primary">Login</button>
+          </div>
+        </form>
+        <img src="./login.jpg" alt="" />
+      </div>
+    </div>
+  </body>
+</html>

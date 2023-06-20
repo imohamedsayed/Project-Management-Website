@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/landingHeader.ejs')%>
+    <div class="auth">
+      <div class="intro">
+        <form action="" method="post" class="signup-form auth-from">
+          <label for="email">Email : </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control mb-4"
+          />
+          <label for="password">Password : </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control mb-4"
+          />
+          <label for="password">Confirm Password : </label>
+          <input
+            type="password"
+            id="password"
+            name="confirm_password"
+            class="form-control mb-4"
+          />
+          <div class="terms d-flex align-items-center">
+            <input
+              type="checkbox"
+              class="me-2"
+              style="width: 20px; height: 20px"
+            />Accept terms and conditions
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary">Sign Up</button>
+          </div>
+        </form>
+        <img src="./login.jpg" alt="" />
+      </div>
+    </div>
+  </body>
+</html>
