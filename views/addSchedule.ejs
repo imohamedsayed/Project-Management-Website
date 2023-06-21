@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs')%>
+  <body>
+    <div class="page-view">
+      <%- include('./partials/aside.ejs')%>
+
+      <main class="schedules-page">
+        <div class="schedules-heading">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="text">
+                <h1 class="mb-4">Schedule an Event</h1>
+                <nav aria-label="breadcrumb ">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item navl"><a href="/schedules" >Schedules</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Project</li>
+                </ol>
+            </nav>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="add-schedule mt-5 p-4">
+            <form>
+              <label for="">Event Name : </label>
+              <input type="text" name="pName" class="form-control" />
+              <label for="">Day : </label>
+              <input type="date" name="pData" class="form-control" />
+              <div class="row">
+                <div class="col-md-6 col-12">
+                    <label for="">from : </label>
+                    <input type="time" name="pData" class="form-control" />
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="">to : </label>
+                    <input type="time" name="pData" class="form-control" />
+                </div>
+              </div>
+              <div class="mt-4 text-center">
+                <button class="custom-btn blue" style="line-height: 45px">Schedule</bu>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

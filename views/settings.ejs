@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs')%>
+  <body>
+    <div class="page-view">
+      <%- include('./partials/aside.ejs')%>
+      <main class="settings-page">
+        <div class="container">
+          <div class="user d-flex align-items-center mt-5">
+            <div class="img">
+              <img src="../user.jpg" class="img-fluid" alt="" />
+            </div>
+            <div class="user-info">
+              <h2 class="user-name mb-0">Mohamed El-Sayed</h2>
+              <span class="text-muted">mso@gmail.com</span>
+              <p class="headline mt-3">Full-Stack Developer</p>
+            </div>
+          </div>
+          <div class="settings mt-5">
+            <div class="change-name mb-4">
+              <form class="d-flex align-items-center">
+                <div class="field flex-fill me-5">
+                  <label for="">Change your name</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div>
+                  <button class="btn btn-dark">
+                    <i class="fa-solid fa-pen me-2"></i>Edit
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="change-email mb-4">
+              <form class="d-flex align-items-center">
+                <div class="field flex-fill me-5">
+                  <label for="">Change your email</label>
+                  <input type="email" class="form-control" />
+                </div>
+                <div>
+                  <button class="btn btn-dark">
+                    <i class="fa-solid fa-pen me-2"></i>Edit
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="change-email mb-4">
+              <form class="d-flex align-items-center">
+                <div class="field flex-fill me-5">
+                  <label for="">Old password</label>
+                  <input type="password" class="form-control" />
+                  <label for="">New password</label>
+                  <input type="password" class="form-control" />
+                </div>
+                <div>
+                  <button class="btn btn-dark">
+                    <i class="fa-solid fa-pen me-2"></i>Edit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

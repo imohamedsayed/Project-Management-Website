@@ -112,7 +112,9 @@ header .user_auth button {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  transition: all 0.6s ease;
 }
+
 .page-view main {
   flex: 1;
   height: 100vh;
@@ -121,6 +123,28 @@ header .user_auth button {
 }
 a {
   text-decoration: none !important;
+}
+aside {
+  z-index: 10;
+
+  position: relative;
+}
+
+aside .aside-toggler {
+  position: absolute;
+  right: -40px;
+  top: 40px;
+  padding: 10px;
+  border: 1px solid var(--pink-color);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
+  display: none;
+}
+aside .aside-toggler:hover {
+  color: #fff;
+  background: linear-gradient(to bottom left, #fd9e5f, #ff55be);
 }
 aside .user .details p {
   color: var(--text-black-900) !important;
@@ -151,6 +175,22 @@ aside .button.active span {
   font-weight: 900;
   color: var(--text-black-900);
 }
+
+@media (max-width: 767px) {
+  aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-220px);
+  }
+  aside.opened {
+    transform: translateX(0);
+  }
+  aside .aside-toggler {
+    display: block;
+  }
+}
+
 
 main.home-page {
   display: flex;
@@ -325,6 +365,9 @@ main.home-page .stats {
   transition: all 0.3s ease;
   border: none;
 }
+.custom-btn.blue {
+  background: linear-gradient(to bottom left, #051353, #55daff);
+}
 .custom-btn2 {
   background: transparent;
   width: 180px;
@@ -463,4 +506,194 @@ main.home-page .stats {
 .today {
   background: var(--yellow-color);
   color: white;
+}
+
+/*
+
+    ----> Projects page
+
+*/
+
+.projects-page .projects-header,
+.schedules-page .schedules-heading {
+  background-image: url("./banner2.jpg");
+  background-size: cover;
+  padding: 50px;
+  color: #fff;
+  position: relative;
+}
+.schedules-page .schedules-heading {
+  background-image: url("./projectHeader.jpg");
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.projects-header .container .text,
+.schedules-heading .container .text {
+  z-index: 3;
+  background: #ffffff33;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.projects-header .container .text h1,
+.schedules-heading .container .text h1 {
+  color: #fff;
+}
+
+.projects-section-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: var(--text-black-900);
+}
+.tasks .task-box {
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.07);
+
+  transition: all 0.3s ease;
+}
+.tasks .task-box:hover {
+  transform: scale(1.02);
+}
+.task-box .date {
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: var(--text-black-700);
+}
+.task-box .task-name {
+  font-weight: 600;
+  color: var(--text-black-900);
+  font-size: 1.6rem;
+}
+.task-box .time-hours {
+  font-size: 1.1rem;
+}
+
+.today-task {
+  background: #f9edc8;
+}
+.inProgress-task {
+  background: #c8ebf8;
+}
+.Completed-task {
+  background: #c9f9cd;
+}
+.notCompleted-task {
+  background: #efefef;
+}
+
+.add-projects form,
+.add-schedule form {
+  background: var(--bg-black-50);
+  padding: 50px;
+}
+.add-projects form input,
+.add-schedule form input {
+  margin-bottom: 30px;
+  height: 50px;
+  padding: 10px;
+  font-size: 1.3rem;
+}
+.add-projects form label,
+.add-schedule form label {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  color: var(--text-black-900);
+  font-weight: 500;
+}
+
+/*
+ ---> schedules
+*/
+.schedules-header,
+.schedules-header a {
+  text-decoration: none;
+  color: var(--text-black-900);
+}
+.schedule-box {
+  display: flex;
+  gap: 30px;
+  background: var(--bg-black-50);
+  padding: 10px;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.091);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.schedule-box .date {
+  text-align: center;
+  width: 120px;
+  position: relative;
+}
+.schedule-box .date::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.2);
+  right: 0;
+  top: 10%;
+  transform: translateY(-50);
+}
+.schedule-box .date {
+  font-weight: 700;
+  font-size: 2rem;
+}
+.schedule-box .date.active {
+  color: var(--orange-color);
+}
+.schedule-box .date p {
+  margin: 0;
+}
+.schedule-box .time-location {
+  color: var(--text-black-700);
+  width: 200px;
+}
+.schedule-box .schedule {
+  flex: 1;
+  padding: 10px;
+}
+/*
+  -- Settings
+*/
+.settings-page .user {
+  height: 200px;
+  background: var(--bg-black-50);
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 15px;
+  border-radius: 15px;
+}
+
+.settings-page .user img {
+  width: 180px;
+}
+.settings > div {
+  background: var(--bg-black-50);
+
+  padding: 20px;
+}
+.settings input {
+  margin-bottom: 30px;
+  height: 50px;
+  padding: 10px;
+  font-size: 1.3rem;
+}
+.settings label {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  color: var(--text-black-900);
+  font-weight: 500;
+}
+.settings button {
+  width: 120px;
+  height: 60px;
 }

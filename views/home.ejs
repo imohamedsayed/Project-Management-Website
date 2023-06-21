@@ -38,10 +38,14 @@
               <i class="fa-regular fa-bell"></i>
             </div>
             <div class="btns text-center">
-              <button class="custom-btn me-2 mb-md-0 mb-2">
-                Add a Project
-              </button>
-              <button class="custom-btn2">Schedule a Shot</button>
+              <a href="/projects/create"
+                ><button class="custom-btn me-2 mb-md-0 mb-2">
+                  Add a Project
+                </button></a
+              >
+              <a href="/schedules/create">
+                <button class="custom-btn2">Schedule a Shot</button>
+              </a>
             </div>
           </div>
           <%- include('./partials/home/calender.ejs')%> <%-

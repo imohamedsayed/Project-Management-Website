@@ -1,7 +1,7 @@
 <aside class="aside-bar">
         <div class="user d-flex">
           <div class="img me-2">
-            <img src="./user.jpg" style="width: 60px" alt="" />
+            <img src="../user.jpg" style="width: 60px" alt="" />
           </div>
           <div class="details">
             <p class="m-0">Mohamed</p>
@@ -9,22 +9,22 @@
           </div>
         </div>
         <hr />
-        <a href="#">
+        <a href="/home">
           <div class="button active">
             <i class="fa-solid fa-chart-line"></i> <span>Dashboard</span>
           </div>
         </a>
-        <a href="#">
+        <a href="/projects">
           <div class="button">
             <i class="fa-solid fa-diagram-project"></i><span>Projects</span>
           </div>
         </a>
-        <a href="#">
+        <a href="/schedules">
           <div class="button">
             <i class="fa-solid fa-calendar-day"></i><span>Schedules</span>
           </div>
         </a>
-        <a href="#">
+        <a href="/settings">
           <div class="button">
             <i class="fa-solid fa-gear"></i><span>Settings</span>
           </div>
@@ -42,4 +42,28 @@
             ><span>Logout</span>
           </div>
         </a>
+        <div class="aside-toggler">
+          <i class="fa-solid fa-bars"></i>
+        </div>
 </aside>
+<div class="aside-overlay overlay d-md-none "></div>
+
+<script>
+  document.querySelector('.aside-toggler').addEventListener('click',()=>{
+    document.querySelector('aside').classList.toggle('opened')
+    checkAsideOverlay()
+  })
+  document.querySelector('.aside-overlay').addEventListener('click',()=>{
+        document.querySelector('aside').classList.remove('opened')
+        document.querySelector('.aside-overlay').style.display='none'
+  })
+  function checkAsideOverlay(){
+    if(document.querySelector('aside').classList.contains('opened')){
+      document.querySelector('.aside-overlay').style.display='block'
+    }else{
+      document.querySelector('.aside-overlay').style.display='none'
+    }
+  }
+
+  checkAsideOverlay()
+</script>

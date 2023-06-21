@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs')%>
+  <body>
+    <div class="page-view">
+      <%- include('./partials/aside.ejs')%>
+
+      <main class="projects-page">
+        <div class="projects-header">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="text">
+                <h1 class="mb-4">Add a Project</h1>
+                <nav aria-label="breadcrumb ">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item navl"><a href="/projects" >Projects</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Project</li>
+                </ol>
+            </nav>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="add-projects mt-5 p-4">
+            <form>
+              <label for="name">Project Name : </label>
+              <input type="text" name="pName" class="form-control" />
+              <label for="name">Deadline Date : </label>
+              <input type="datetime-local" name="pData" class="form-control" />
+              <div class="mt-4 text-center">
+                <button class="custom-btn" style="line-height: 45px">Add</bu>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

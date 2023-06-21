@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs')%>
+  <body>
+    <div class="page-view">
+      <%- include('./partials/aside.ejs')%>
+
+      <main class="projects-page">
+        <div class="projects-header">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="text">
+              <h1>Projects</h1>
+            </div>
+          </div>
+        </div>
+        <div class="all-projects mt-5 p-4">
+          <div class="add mb-5 d-flex justify-content-end">
+            <a href="/projects/create"
+              ><div class="btn btn-outline-dark me-2">Add a new project</div></a
+            >
+            <div class="btn btn-danger">Delete all projects</div>
+          </div>
+          <div class="row">
+            <%- include('./partials/projects/today.ejs')%> <%-
+            include('./partials/projects/in_progress.ejs')%> <%-
+            include('./partials/projects/completed.ejs')%> <%-
+            include('./partials/projects/not_completed.ejs')%>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

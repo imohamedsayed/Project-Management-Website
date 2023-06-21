@@ -50,3 +50,15 @@ app.use(homeRouters);
 // Login & SignUp page
 const authRouters = require("./routers/authRouters");
 app.use(authRouters);
+
+// Projects
+const projectRouters = require("./routers/projectRouters");
+app.use(projectRouters);
+
+// schedules
+const scheduleRouters = require("./routers/schedulesRouter");
+app.use(scheduleRouters);
+
+// User
+const userRouters = require("./routers/userRoutes");
+app.use(userRouters);
