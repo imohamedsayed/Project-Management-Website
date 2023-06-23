@@ -6,39 +6,42 @@
     <div class="auth">
       <div class="intro">
         <form action="" method="post" class="signup-form auth-from">
+          <h2 class="text-primary mb-1">Signup</h2>
           <label for="email">Name : </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            class="form-control mb-4"
-          />
+          <input type="text" id="name" name="name" class="form-control mb-1" />
+          <span class="text-danger d-block name-error"></span>
           <label for="email">Email : </label>
           <input
             type="email"
             id="email"
             name="email"
-            class="form-control mb-4"
+            class="form-control mb-1"
           />
+          <span class="text-danger d-block email-error"></span>
+
           <label for="password">Password : </label>
           <input
             type="password"
             id="password"
             name="password"
-            class="form-control mb-4"
+            class="form-control mb-1"
           />
-          <label for="password">Confirm Password : </label>
+          <span class="text-danger d-block password-error"></span>
+          <label for="cpassword">Confirm Password : </label>
           <input
             type="password"
-            id="password"
+            id="cpassword"
             name="confirm_password"
-            class="form-control mb-4"
+            class="form-control mb-1"
           />
+          <span class="text-danger d-block confirm_password-error"></span>
+
           <div class="terms d-flex align-items-center">
             <input
               type="checkbox"
               class="me-2"
               style="width: 20px; height: 20px"
+              required
             />Accept terms and conditions
           </div>
           <div class="text-center">
@@ -49,4 +52,5 @@
       </div>
     </div>
   </body>
+  <script src="../js/signup.js"></script>
 </html>

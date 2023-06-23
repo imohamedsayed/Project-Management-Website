@@ -94,6 +94,7 @@ header .user_auth button {
 }
 .auth form label {
   margin-bottom: 10px;
+  margin-top: 25px;
 }
 .auth div {
   margin-top: 40px;

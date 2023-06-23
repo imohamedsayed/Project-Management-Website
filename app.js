@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const dbURI =
   "mongodb+srv://MSO:mso123456@node.d5zfykw.mongodb.net/TODO-DB?retryWrites=true&w=majority";
@@ -25,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 app.use(express.json());
-
+app.use(cookieParser());
 // Bootstrap static files ..
 
 app.use(
@@ -63,8 +64,20 @@ app.use(scheduleRouters);
 
 // User
 const userRouters = require("./routers/userRoutes");
-const exp = require("constants");
 app.use(userRouters);
+
+// Cookies
+
+// app.get("/set-cookie", (req, res) => {
+//   res.cookie("user", false, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
+//   res.cookie("isEmployee", true);
+
+//   res.send("cookies set successfully");
+// });
+
+// app.get("/read-cookie", (req, res) => {
+//   res.json(req.cookies);
+// });
 
 app.use((req, res) => {
   res.status(404).render("404", { title: "Not Found !" });
