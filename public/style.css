@@ -556,8 +556,18 @@ main.home-page .stats {
   padding: 10px;
   border-radius: 15px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.07);
-
   transition: all 0.3s ease;
+  position: relative;
+}
+.task-box .status {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+}
+.task-box .status input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 .tasks .task-box:hover {
   transform: scale(1.02);

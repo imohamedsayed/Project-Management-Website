@@ -11,9 +11,9 @@
               <img src="../user.jpg" class="img-fluid" alt="" />
             </div>
             <div class="user-info">
-              <h2 class="user-name mb-0">Mohamed El-Sayed</h2>
-              <span class="text-muted">mso@gmail.com</span>
-              <p class="headline mt-3">Full-Stack Developer</p>
+              <h2 class="user-name mb-0"><%= user.name%></h2>
+              <span class="text-muted"><%= user.email%></span>
+              <p class="headline mt-3">ID : <%= user._id%></p>
             </div>
           </div>
           <div class="settings mt-5">
@@ -21,7 +21,7 @@
               <form class="d-flex align-items-center">
                 <div class="field flex-fill me-5">
                   <label for="">Change your name</label>
-                  <input type="text" class="form-control" />
+                  <input type="text" class="form-control" value="<%= user.name%>"/>
                 </div>
                 <div>
                   <button class="btn btn-dark">
@@ -34,7 +34,7 @@
               <form class="d-flex align-items-center">
                 <div class="field flex-fill me-5">
                   <label for="">Change your email</label>
-                  <input type="email" class="form-control" />
+                  <input type="email" class="form-control" value="<%= user.email%>"/>
                 </div>
                 <div>
                   <button class="btn btn-dark">

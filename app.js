@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-
+const { checkUser } = require("./middleware/AuthMiddleware");
 const dbURI =
   "mongodb+srv://MSO:mso123456@node.d5zfykw.mongodb.net/TODO-DB?retryWrites=true&w=majority";
 
@@ -46,13 +46,15 @@ app.use(
     ---- >>>>> Controllers
 */
 
-// Home & landing page
-const homeRouters = require("./routers/homeRouters");
-app.use(homeRouters);
+app.get("*", checkUser);
 
 // Login & SignUp page
 const authRouters = require("./routers/authRouters");
 app.use(authRouters);
+
+// Home & landing page
+const homeRouters = require("./routers/homeRouters");
+app.use(homeRouters);
 
 // Projects
 const projectRouters = require("./routers/projectRouters");

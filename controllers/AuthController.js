@@ -16,6 +16,13 @@ const handleErrors = (err) => {
     });
   }
 
+  if (err.message.includes("Incorrect email")) {
+    errors.email = "This email is not registered";
+  }
+  if (err.message.includes("Incorrect Password")) {
+    errors.password = "Password is incorrect";
+  }
+
   return errors;
 };
 
@@ -29,15 +36,33 @@ const createToken = (id) => {
 
 // handle requests
 const get_login = (req, res) => {
-  res.render("auth/login", { title: "Login" });
+  let user = req.cookies.jwt;
+  if (!user) {
+    res.render("auth/login", { title: "Login" });
+  } else {
+    res.redirect("/home");
+  }
 };
 const get_signup = (req, res) => {
-  res.render("auth/sign", { title: "Signup" });
+  let user = req.cookies.jwt;
+  if (!user) {
+    res.render("auth/sign", { title: "Signup" });
+  } else {
+    res.redirect("/home");
+  }
 };
 
 const login_post = async (req, res) => {
   const { email, password } = req.body;
-  res.send("login");
+  try {
+    const user = await User.login(email, password);
+    const token = createToken(user._id);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+    res.status(200).json({ user: user._id });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
 };
 
 const signup_post = async (req, res) => {
@@ -53,9 +78,15 @@ const signup_post = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
+  res.redirect("/");
+};
+
 module.exports = {
   get_login,
   get_signup,
   login_post,
   signup_post,
+  logout,
 };
