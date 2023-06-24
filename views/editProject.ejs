@@ -10,11 +10,11 @@
           <div class="overlay"></div>
           <div class="container">
             <div class="text">
-                <h1 class="mb-4">Add a Project</h1>
+                <h1 class="mb-4">Edit <%=project.name%></h1>
                 <nav aria-label="breadcrumb ">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item navl"><a href="/projects" >Projects</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Project</li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Project</li>
                 </ol>
             </nav>
             </div>
@@ -24,20 +24,22 @@
           <div class="add-projects mt-5 p-4">
             <form>
               <label for="name">Project Name : </label>
-              <input type="text" name="name" class="form-control mb-0" />
+              <input type="text" name="name" class="form-control mb-0" value="<%=project.name%>"/>
               <span class="text-danger d-block name-error"></span>
               <label for="name" class="mt-4">Deadline Date : </label>
-              <input type="datetime-local" name="date" class="form-control " required />
+              <input type="date" name="date" class="form-control " value="<%=new Date(project.date).toLocaleDateString('en-CA')%>" disabled/>
               <span class="text-danger d-block date-error"></span>
-
               <div class="mt-4 text-center">
-                <button class="custom-btn" style="line-height: 45px">Add</bu>
+                <button class="custom-btn" style="line-height: 45px">Update</bu>
               </div>
+              <input type="hidden" value="<%= project._id%>" name="id">
             </form>
           </div>
         </div>
       </main>
     </div>
-    <script src='../js/project/add.js'></script>
+ 
+    <script src='../../js/project/update.js'></script>
+
   </body>
 </html>
