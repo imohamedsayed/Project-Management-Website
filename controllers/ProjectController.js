@@ -81,6 +81,31 @@ const getNotCompletedProjects = (projects) => {
   return results;
 };
 
+const allNotYetCompletedTasks = (projects) => {
+  const now = new Date();
+
+  let results = projects.filter((project) => {
+    let projectDate = new Date(project.date);
+    if (projectDate > now) {
+      return project;
+    }
+  });
+
+  return results;
+};
+const allNotCompletedTasks = (projects) => {
+  let results = projects.filter((project) => !project.completed);
+  return results;
+};
+const getAllMarkedCompletedProjects = (projects) => {
+  let results = projects.filter((project) => {
+    if (project.completed) {
+      return project;
+    }
+  });
+
+  return results;
+};
 // Requests
 const get_projects = (req, res) => {
   res.render("projects", { title: "My Projects" });
@@ -143,13 +168,34 @@ const get_performance = async (req, res) => {
   try {
     const projects = await Project.find({ userId: id });
 
-    let c = getCompletedProjects(projects).length;
+    let c = getAllMarkedCompletedProjects(projects).length;
 
     if (projects.length) {
       res.status(200).json({ performance: (c / projects.length) * 100 });
     } else {
       res.status(200).json({ performance: 0 });
     }
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+};
+
+const get_projects_status = async (req, res) => {
+  const id = jwt.verify(req.cookies.jwt, "mso 1478 9632").id;
+  try {
+    const projects = await Project.find({ userId: id });
+    const completedProjects = getCompletedProjects(projects).length;
+    const notCompletedProjects = allNotCompletedTasks(projects).length;
+    const totalProjects = projects.length;
+    const inprogressProjects = getInProgressProjects(projects).length;
+    res.status(200).json({
+      stats: {
+        total_projects: totalProjects,
+        completed_projects: completedProjects,
+        not_completed: notCompletedProjects,
+        inprogress_projects: inprogressProjects,
+      },
+    });
   } catch (err) {
     res.status(400).json({ err });
   }
@@ -213,6 +259,38 @@ const edit_project_put = async (req, res) => {
   }
 };
 
+const getRunningTasks = async (req, res) => {
+  const id = jwt.verify(req.cookies.jwt, "mso 1478 9632").id;
+  try {
+    const projects = await Project.find({ userId: id });
+
+    let p = allNotYetCompletedTasks(projects);
+
+    res.status(200).json({ tasks: p });
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+};
+
+const delete_project = async (req, res) => {
+  try {
+    let results = await Project.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({ results });
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+};
+const delete_All_projects = async (req, res) => {
+  try {
+    let results = await Project.deleteMany({});
+
+    res.status(200).json({ results });
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+};
+
 module.exports = {
   get_projects,
   create_project_get,
@@ -225,4 +303,8 @@ module.exports = {
   change_project_status,
   edit_project_get,
   edit_project_put,
+  get_projects_status,
+  getRunningTasks,
+  delete_project,
+  delete_All_projects,
 };

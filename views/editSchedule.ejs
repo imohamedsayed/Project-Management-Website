@@ -10,7 +10,7 @@
           <div class="overlay"></div>
           <div class="container">
             <div class="text">
-                <h1 class="mb-4">Schedule an Event</h1>
+                <h1 class="mb-4">Edit <%= schedule.name %> </h1>
                 <nav aria-label="breadcrumb ">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item navl"><a href="/schedules" >Schedules</a></li>
@@ -25,36 +25,27 @@
             <form>
               <label for="">Event Name : </label>
               <input type="text" name="name" class="form-control" />
-              <span class="text-danger d-block name-error"></span>
-
               <label for="">Location </label>
               <input type="text" name="location" class="form-control" />
-              <span class="text-danger d-block location-error"></span>
-
               <label for="">Day : </label>
               <input type="date" name="date" class="form-control" />
-              <span class="text-danger d-block date-error"></span>
-
               <div class="row">
                 <div class="col-md-6 col-12">
                     <label for="">from : </label>
                     <input type="time" name="from" class="form-control" />
-                    <span class="text-danger d-block from-error"></span>
                 </div>
                 <div class="col-md-6 col-12">
                     <label for="">to : </label>
                     <input type="time" name="to" class="form-control" />
-                    <span class="text-danger d-block to-error"></span>
                 </div>
               </div>
               <div class="mt-4 text-center">
-                <button class="custom-btn blue" style="line-height: 45px">Schedule</bu>
+                <button class="custom-btn blue" style="line-height: 45px">Edit</bu>
               </div>
             </form>
           </div>
         </div>
       </main>
     </div>
-    <script src='../js/schedule/add.js'></script>
   </body>
 </html>
