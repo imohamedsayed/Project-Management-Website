@@ -94,7 +94,10 @@ const allNotYetCompletedTasks = (projects) => {
   return results;
 };
 const allNotCompletedTasks = (projects) => {
-  let results = projects.filter((project) => !project.completed);
+  const now = new Date();
+  let results = projects.filter(
+    (project) => !project.completed && now > new Date(project.date)
+  );
   return results;
 };
 const getAllMarkedCompletedProjects = (projects) => {

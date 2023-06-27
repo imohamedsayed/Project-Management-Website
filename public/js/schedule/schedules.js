@@ -5,8 +5,6 @@ async function bringSchedules() {
     let res = await fetch("/schedules/allSchedules", { method: "GET" });
     const data = await res.json();
 
-    console.log(data);
-
     for (var month in data.schedules) {
       tasksContainer.innerHTML += `
       <div class="Tasks-container mt-5">
@@ -27,7 +25,6 @@ async function bringSchedules() {
       for (schedule of schedules) {
         const scheduleDate = new Date(schedule.date);
         const today = new Date();
-        console.log(schedule);
         container.innerHTML += `
         <div class="schedule-box">
           <div class="date ${
@@ -57,8 +54,12 @@ async function bringSchedules() {
             <h3>${schedule.name}</h3>
           </div>
           <div class="edit">
-            <a href='/schedules/${schedule._id}' ><button class="btn btn-outline-dark">Edit</button></a>
-            <button class="btn btn-outline-danger">Cancel</button>
+            <a href='/schedules/${
+              schedule._id
+            }' ><button class="btn btn-outline-dark">Edit</button></a>
+            <button class="btn btn-outline-danger delete-schedule"data-doc="${
+              schedule._id
+            }">Cancel</button>
           </div>
     </div>
         `;
@@ -68,4 +69,23 @@ async function bringSchedules() {
     console.log(err);
   }
 }
-bringSchedules();
+
+
+bringSchedules().then((_) => {
+  const deleteBtn = document.querySelectorAll(".edit button.delete-schedule");
+  deleteBtn.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      const docId = btn.dataset.doc;
+
+      try {
+        await fetch("/schedules/" + docId, {
+          method: "DELETE",
+        });
+
+        e.target.parentNode.parentNode.remove();
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  });
+});

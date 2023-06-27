@@ -18,10 +18,16 @@
           </div>
           <div class="settings mt-5">
             <div class="change-name mb-4">
-              <form class="d-flex align-items-center">
+              <form class="d-flex align-items-center change-name">
                 <div class="field flex-fill me-5">
                   <label for="">Change your name</label>
-                  <input type="text" class="form-control" value="<%= user.name%>"/>
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    value="<%= user.name%>"
+                  />
+                  <span class="text-danger name-error"></span>
                 </div>
                 <div>
                   <button class="btn btn-dark">
@@ -31,10 +37,16 @@
               </form>
             </div>
             <div class="change-email mb-4">
-              <form class="d-flex align-items-center">
+              <form class="d-flex align-items-center change-email">
                 <div class="field flex-fill me-5">
                   <label for="">Change your email</label>
-                  <input type="email" class="form-control" value="<%= user.email%>"/>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    value="<%= user.email%>"
+                  />
+                  <span class="text-danger email-error"></span>
                 </div>
                 <div>
                   <button class="btn btn-dark">
@@ -43,13 +55,22 @@
                 </div>
               </form>
             </div>
-            <div class="change-email mb-4">
-              <form class="d-flex align-items-center">
+            <div class="change-pass mb-4">
+              <form class="d-flex align-items-center change-password">
                 <div class="field flex-fill me-5">
                   <label for="">Old password</label>
-                  <input type="password" class="form-control" />
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="oldPassword"
+                  />
                   <label for="">New password</label>
-                  <input type="password" class="form-control" />
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="newPassword"
+                  />
+                  <span class="text-danger password-error"></span>
                 </div>
                 <div>
                   <button class="btn btn-dark">
@@ -62,5 +83,6 @@
         </div>
       </main>
     </div>
+    <script src="../js/settings/settings.js"></script>
   </body>
 </html>

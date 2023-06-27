@@ -21,5 +21,17 @@ router.get(
 );
 
 router.get("/schedules/:id", requireAuth, ScheduleController.schedule_edit_get);
+router.put("/schedules/:id", requireAuth, ScheduleController.schedule_edit_put);
+router.delete(
+  "/schedules/:id",
+  requireAuth,
+  ScheduleController.delete_schedule
+);
+
+router.get(
+  "/todaySchedules",
+  requireAuth,
+  ScheduleController.today_schedules_get
+);
 
 module.exports = router;

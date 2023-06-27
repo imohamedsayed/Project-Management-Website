@@ -204,3 +204,31 @@ getTasks()
       });
     });
   });
+
+async function todaySchedules() {
+  try {
+    let res = await fetch("/todaySchedules", { method: "GET" });
+
+    const data = await res.json();
+
+    return data.schedules;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+todaySchedules().then((schedules) => {
+  let schedulesContainer = document.querySelector(".schedule-list-container");
+  if (schedules.length) {
+    schedules.forEach((schedule) => {
+      const li = document.createElement("li");
+      li.classList.add("d-flex");
+      li.classList.add("justify-content-between");
+      li.innerHTML = `<span>${schedule.name}</span><span><i class="fa-regular fa-clock me-1"></i>${schedule.from} : ${schedule.to}</span>`;
+      schedulesContainer.appendChild(li);
+    });
+  } else {
+    schedulesContainer.innerHTML =
+      '<div class="alert alert-info">you have no schedules today</div>';
+  }
+});
