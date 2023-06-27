@@ -10,11 +10,11 @@
           <div class="overlay"></div>
           <div class="container">
             <div class="text">
-                <h1 class="mb-4">Schedule an Event</h1>
+                <h1 class="mb-4">Edit <%= schedule.name %> </h1>
                 <nav aria-label="breadcrumb ">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item navl"><a href="/schedules" >Schedules</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Project</li>
+                    <li class="breadcrumb-item active" aria-current="page">edit schedule</li>
                 </ol>
             </nav>
             </div>
@@ -24,37 +24,37 @@
           <div class="add-schedule mt-5 p-4">
             <form>
               <label for="">Event Name : </label>
-              <input type="text" name="name" class="form-control" />
+              <input type="text" name="name" class="form-control" value="<%= schedule.name %>"/>
               <span class="text-danger d-block name-error"></span>
-
               <label for="">Location </label>
-              <input type="text" name="location" class="form-control" />
+              <input type="text" name="location" class="form-control"  value="<%= schedule.location %>"/>
               <span class="text-danger d-block location-error"></span>
-
               <label for="">Day : </label>
-              <input type="date" name="date" class="form-control" />
+              <input type="date" name="date" class="form-control" value="<%=new Date(schedule.date).toLocaleDateString('en-CA') %>"/>
               <span class="text-danger d-block date-error"></span>
-
               <div class="row">
                 <div class="col-md-6 col-12">
                     <label for="">from : </label>
-                    <input type="time" name="from" class="form-control" />
+                    <input type="time" name="from" class="form-control" value="<%= schedule.from %>"/>
                     <span class="text-danger d-block from-error"></span>
+
                 </div>
                 <div class="col-md-6 col-12">
                     <label for="">to : </label>
-                    <input type="time" name="to" class="form-control" />
+                    <input type="time" name="to" class="form-control" value="<%= schedule.to %>"/>
                     <span class="text-danger d-block to-error"></span>
                 </div>
               </div>
+              <input type="hidden" name='id' value="<%= schedule._id%>">
               <div class="mt-4 text-center">
-                <button class="custom-btn blue" style="line-height: 45px">Schedule</bu>
+                <button class="custom-btn blue" style="line-height: 45px">Edit</bu>
               </div>
             </form>
           </div>
         </div>
       </main>
     </div>
-    <script src='../js/schedule/add.js'></script>
+    <script src='../js/schedule/edit.js'></script>
+
   </body>
 </html>

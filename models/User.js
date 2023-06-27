@@ -52,6 +52,23 @@ userSchema.statics.login = async function (email, password) {
   }
 };
 
+userSchema.statics.changePassword = async function (id, old, newPass) {
+  const user = await this.findById(id);
+  const passwordFlag = await bcrypt.compare(old, user.password);
+
+  if (passwordFlag) {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(newPass, salt);
+    const updatedUser = this.findByIdAndUpdate(id, {
+      password: hashedPassword,
+    });
+
+    return updatedUser;
+  } else {
+    throw Error("Incorrect Password");
+  }
+};
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

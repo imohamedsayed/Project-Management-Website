@@ -493,8 +493,8 @@ main.home-page .stats {
 }
 
 .days div:hover:not(.today) {
-  background-color: #262626;
-  border: 0.2rem solid #777;
+  background-color: #bae12d;
+  border: 0.02rem solid #777;
   cursor: pointer;
 }
 
@@ -585,7 +585,14 @@ main.home-page .stats {
 .task-box .time-hours {
   font-size: 1.1rem;
 }
-
+.task-box .status i.fa-trash {
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.task-box .status i.fa-trash:hover {
+  opacity: 1;
+}
 .today-task {
   background: #f9edc8;
 }
@@ -606,13 +613,14 @@ main.home-page .stats {
 }
 .add-projects form input,
 .add-schedule form input {
-  margin-bottom: 30px;
   height: 50px;
   padding: 10px;
   font-size: 1.3rem;
 }
 .add-projects form label,
 .add-schedule form label {
+  margin-top: 30px;
+
   margin-bottom: 10px;
   font-size: 1.4rem;
   color: var(--text-black-900);

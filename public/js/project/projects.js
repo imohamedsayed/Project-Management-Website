@@ -92,17 +92,21 @@ function showTodayTasks() {
         new Date(task.date).getHours() > 12 ? "pm" : "am"
       } </span>
       </div>
-      <div class="status">
-        <input type="checkbox" title="mark as completed" name="completed" data-id='${
+      <div class="status d-flex align-items-center g-2">
+        <input type="checkbox" title="mark as completed" class="me-3" name="completed" data-id='${
           task._id
         }' ${task.completed ? "checked" : " "} />
+
+        <a  class="text-danger delete-project" data-doc="${
+          task._id
+        }"   style="font-size:1.3rem"><i class="fa-solid fa-trash"></i></a>
       </div>
     </div>
     `;
     });
   } else {
     todayTasksContainer.innerHTML =
-      "<div class='alert alert-info'>There is not projects for today</div>";
+      "<div class='alert alert-info'>There are no projects for today</div>";
   }
 }
 function showInProgressTasks() {
@@ -131,17 +135,22 @@ function showInProgressTasks() {
         new Date(task.date).getHours() > 12 ? "pm" : "am"
       } </span>
       </div>
-      <div class="status">
-         <input type="checkbox" title="mark as completed" name="completed" data-id='${
-           task._id
-         }' ${task.completed ? "checked" : " "} />
+  
+      <div class="status d-flex align-items-center g-2">
+       <input type="checkbox" class="me-2" title="mark as completed" name="completed" data-id='${
+         task._id
+       }' ${task.completed ? "checked" : " "} />
+
+        <a  class="text-danger delete-project" data-doc="${
+          task._id
+        }" style="font-size:1.3rem"><i class="fa-solid fa-trash"></i></a>
       </div>
     </div>
     `;
     });
   } else {
     InProgressTasksContainer.innerHTML =
-      "<div class='alert alert-info'>There is not projects inprogress</div>";
+      "<div class='alert alert-info'>There are no projects inprogress</div>";
   }
 }
 function showCompletedTasks() {
@@ -168,8 +177,12 @@ function showCompletedTasks() {
         new Date(task.date).getHours() > 12 ? "pm" : "am"
       } </span>
       </div>
-      <div class="status">
-        <input type="checkbox" title="mark as completed" name="completed" checked disabled/>
+      <div class="status d-flex align-items-center g-2">
+        <input type="checkbox" class="me-2" title="mark as completed" name="completed" checked disabled/>
+
+        <a  class="text-danger delete-project" data-doc="${
+          task._id
+        }" style="font-size:1.3rem"><i class="fa-solid fa-trash"></i></a>
       </div>
     </div>
     `;
@@ -203,8 +216,12 @@ function showNotCompletedTasks() {
         new Date(task.date).getHours() > 12 ? "pm" : "am"
       } </span>
       </div>
-      <div class="status">
-        <i class="fa-solid fa-xmark text-danger fs-4" title='not completed'></i>
+      <div class="status d-flex align-items-center g-2">
+        <i class="fa-solid fa-xmark text-danger me-2 fs-4" title='not completed'></i>
+
+        <a  class="text-danger delete-project" data-doc="${
+          task._id
+        }" style="font-size:1.3rem"><i class="fa-solid fa-trash"></i></a>
       </div>
     </div>
     `;
@@ -215,27 +232,50 @@ function showNotCompletedTasks() {
   }
 }
 
-displayAllTasks().then(() => {
-  let completeStatus = document.querySelectorAll(".status input");
-  completeStatus.forEach((input) => {
-    input.addEventListener("change", async (e) => {
-      try {
-        await fetch(`/project/${input.dataset.id}`, {
-          method: "PUT",
-          body: JSON.stringify({
-            status: input.checked,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      } catch (err) {
-        console.log(err);
-      }
+displayAllTasks()
+  .then(() => {
+    let completeStatus = document.querySelectorAll(".status input");
+    completeStatus.forEach((input) => {
+      input.addEventListener("change", async (e) => {
+        try {
+          await fetch(`/project/${input.dataset.id}`, {
+            method: "PUT",
+            body: JSON.stringify({
+              status: input.checked,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    });
+  })
+  .then((_) => {
+    let allDeleteLinks = document.querySelectorAll("a.delete-project");
+
+    allDeleteLinks.forEach((link) => {
+      link.addEventListener("click", async (e) => {
+        try {
+          let res = await fetch(`/project/${link.dataset.doc}`, {
+            method: "DELETE",
+          });
+
+          e.target.parentNode.parentNode.parentNode.remove();
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    });
+
+    let deleteAllBtn = document.querySelector(".btn.delete-all"),
+      allTasks = document.querySelectorAll(".task-box");
+    deleteAllBtn.addEventListener("click", async () => {
+      await fetch("/projects", { method: "DELETE" });
+      allTasks.forEach((task) => {
+        task.remove();
+      });
     });
   });
-});
-
-
-let x = new Date();
-x.getSeconds

@@ -35,9 +35,28 @@ router.get(
   requireAuth,
   ProjectController.get_notCompleted_projects
 );
-router.get("/performance", requireAuth, ProjectController.get_performance);
 
-router.get("/projects/edit/:id", requireAuth, ProjectController.edit_project_get);
+router.get(
+  "/projects/runningTasks",
+  requireAuth,
+  ProjectController.getRunningTasks
+);
+
+router.get("/performance", requireAuth, ProjectController.get_performance);
+router.get(
+  "/projects/stats",
+  requireAuth,
+  ProjectController.get_projects_status
+);
+router.get(
+  "/projects/edit/:id",
+  requireAuth,
+  ProjectController.edit_project_get
+);
+
+router.delete("/project/:id", requireAuth, ProjectController.delete_project);
+router.delete("/projects", requireAuth, ProjectController.delete_All_projects);
+
 router.put(
   "/projects/edit/:id",
   requireAuth,
