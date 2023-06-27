@@ -36,10 +36,10 @@ const index = (req, res) => {
 const schedule_create_get = (req, res) => {
   res.render("addSchedule", { title: "Schedule" });
 };
-const schedule_edit_get = (req, res) => {
+const schedule_edit_get = async(req, res) => {
   try {
-    const schedule = Schedule.findById(req.params.id);
-    res.render("editSchedule", { title: "Edit Schedule", schedule });
+    const schedule = await Schedule.findById(req.params.id);
+    res.render("editSchedule", { title: "Edit Schedule", schedule: schedule });
   } catch (err) {
     res.status(400).render("404", { title: "Not Found" });
   }
