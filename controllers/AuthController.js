@@ -80,7 +80,17 @@ const signup_post = async (req, res) => {
 
 const logout = (req, res) => {
   res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
+  try {
+    req.logout();
+  } catch (err) {}
   res.redirect("/");
+};
+
+const passAuth = (req, res) => {
+  const user = req.user;
+  const token = createToken(user._id);
+  res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+  res.redirect("/home");
 };
 
 module.exports = {
@@ -89,4 +99,5 @@ module.exports = {
   login_post,
   signup_post,
   logout,
+  passAuth,
 };
