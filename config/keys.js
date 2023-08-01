@@ -2,11 +2,10 @@
 
 module.exports = {
   google: {
-    clientID:
-      "",
-    clientSecret: "",
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
   },
   session: {
-    key: "",
+    key: process.env.SESSION_KEY,
   },
 };
