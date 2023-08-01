@@ -5,13 +5,17 @@ const morgan = require("morgan");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const { checkUser } = require("./middleware/AuthMiddleware");
-const dbURI =
-  "mongodb+srv://MSO:mso123456@node.d5zfykw.mongodb.net/TODO-DB?retryWrites=true&w=majority";
-
+const dbURI = "mongodb://localhost:27017/todo";
+const passportSetup = require("./config/passport-setup");
+const cookieSession = require("cookie-session");
+const keys = require("./config/keys");
+const passport = require("passport");
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    app.listen(3000);
+    app.listen(3000, () => {
+      console.log("App is running");
+    });
   })
   .catch((err) => {
     console.log("Error while connecting to Mongo : ", err);
@@ -24,8 +28,18 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-
 app.use(express.json());
+
+app.use(
+  cookieSession({
+    maxAge: 1 * 24 * 60 * 60 * 1000,
+    keys: [keys.session.key],
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(cookieParser());
 // Bootstrap static files ..
 

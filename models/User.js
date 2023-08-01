@@ -17,8 +17,12 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Password is required"],
+    // required: [true, "Password is required"],
     minlength: [6, "Password must be at least 6 characters long"],
+  },
+  googleId: {
+    type: String,
+    unique: true,
   },
 });
 
@@ -32,8 +36,10 @@ userSchema.post("save", function (doc, next) {
 // fire a function before a document saved to db
 
 userSchema.pre("save", async function (next) {
-  const salt = await bcrypt.genSalt();
-  this.password = await bcrypt.hash(this.password, salt);
+  if (this.password) {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+  }
   next();
 });
 
